@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CellTouch_ToonShader_Fhair_StencilOut
+  m_Shader: {fileID: 4800000, guid: be891319084e9d147b09d89e80ce60e0, type: 3}
+  m_Parent: {fileID: 2100000, guid: d7891689b274457d8c1fa594fc44c0ac, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _EMISSIVE_SIMPLE
+  - _IS_ANGELRING_OFF
+  - _IS_CLIPPING_OFF
+  - _IS_OUTLINE_CLIPPING_NO
+  - _OUTLINE_NML
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    IgnoreProjection: False
+    RenderType: Opaque
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MatCap_Sampler:
+        m_Texture: {fileID: 2800000, guid: 3b42f7c9d35a4b88a533f72baf2a89ce, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapForMatCap:
+        m_Texture: {fileID: 2800000, guid: cf16f24e4875445784ff0bf05da66288, type: 3}
+        m_Scale: {x: 50, y: 0.001}
+        m_Offset: {x: 0, y: 0.5}
+    m_Ints: []
+    m_Floats:
+    - _1st_ShadeColor_Feather: 0.133
+    - _1st_ShadeColor_Step: 0.71
+    - _BaseColor_Step: 0.71
+    - _BaseShade_Feather: 0.133
+    - _Is_NormalMapForMatCap: 1
+    - _Is_NormalMapToBase: 1
+    - _Is_NormalMapToRimLight: 1
+    - _OUTLINE: 0
+    - _Outline_Width: 3.36
+    - _Tweak_SystemShadowsLevel: -0.04
+    - _utsVersionY: 4
+    - _utsVersionZ: 0
+    m_Colors:
+    - _Outline_Color: {r: 0.04411763, g: 0.04411763, b: 0.04411763, a: 1}
+  m_BuildTextureStacks: []

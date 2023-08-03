@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GameLevels/SplashScene.unity
+    guid: cd6cd7b48f9dac04d92eda73f94958e9
+  - enabled: 1
+    path: Assets/GameLevels/menu.unity
+    guid: 99ef17cd69457f243b1966c36446ddba
+  - enabled: 1
+    path: Assets/GameLevels/Map.unity
+    guid: 4e058ef22ff8c294392885c2a3f7a9a5
+  - enabled: 1
+    path: Assets/GameLevels/Level1.unity
+    guid: c850ee8c3b14cc8459e7e186857cf567
+  - enabled: 1
+    path: Assets/GameLevels/Level2.unity
+    guid: a3eaa257932d99044935376096b06283
+  - enabled: 1
+    path: Assets/GameLevels/Level3.unity
+    guid: 47901d3fa65702742a20e49326b7521d
+  - enabled: 1
+    path: Assets/GameLevels/Level4.unity
+    guid: 919aa039928798b47bb606231f8b93a8
+  - enabled: 1
+    path: Assets/GameLevels/Level5.unity
+    guid: 3ec14f4ce5e654a45bf53e8f0d8e0be9
+  - enabled: 1
+    path: Assets/GameLevels/Level6.unity
+    guid: c4824fca192e89e4495fe686bf231da4
+  - enabled: 1
+    path: Assets/GameLevels/Level7.unity
+    guid: e2d75ef4be1262e418233ca47e4c47a2
+  - enabled: 1
+    path: Assets/GameLevels/Level8.unity
+    guid: e64301f481fdb16419d352b1073bb3c6
+  - enabled: 1
+    path: Assets/GameLevels/Level9.unity
+    guid: b2371dbaebac36646b8c7f269d959815
+  - enabled: 1
+    path: Assets/GameLevels/Level10.unity
+    guid: 3d8d9ba377cdf074f99386f405381338
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: e41575c480267014391306f82f8d22eb,
+      type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: a295ff893dc24894ab97f5e9d4e44c34, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 017022fae55337f41939b4e9461d5c5e,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 4fd676af65ecddd40b7b97e7938aab0e,
+      type: 2}
