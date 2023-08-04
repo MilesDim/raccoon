@@ -47,6 +47,10 @@ MonoBehaviour:
     m_Localized: "Szop Kapu\u015Bciany"
     m_Metadata:
       m_Items: []
+  - m_Id: 2379156849176576
+    m_Localized: "Wyj\u015Bcie"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
