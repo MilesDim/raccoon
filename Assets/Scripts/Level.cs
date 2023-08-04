@@ -6,24 +6,35 @@ using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 { 
-    void Start()
-    { 
-        int levelAt = PlayerPrefs.GetInt("levelAt", 2);
-        int i = 0;
-        foreach (Transform child in transform)
+   void Start()
+{
+    int levelAt = LevelManager.unlockedLevel;
+    int i = 0;
+    foreach (Transform child in transform)
+    {
+        Button btn = child.GetComponent<Button>();
+        if (i > levelAt)
         {
-            Button btn = child.GetComponent<Button>();
-            if (i + 2 > levelAt){
-                btn.interactable = false;
-                btn.transform.GetChild(1).gameObject.SetActive(true);
-                btn.transform.GetChild(2).gameObject.SetActive(false);
-            }else{
-                btn.transform.GetChild(1).gameObject.SetActive(false);
-                btn.transform.GetChild(2).gameObject.SetActive(true);
-            }
-            i++;
+            btn.interactable = false;
+            btn.transform.GetChild(0).gameObject.SetActive(true); 
+            btn.transform.GetChild(1).gameObject.SetActive(false);
+        } 
+        else
+        {
+            btn.interactable = true;
+            btn.transform.GetChild(0).gameObject.SetActive(false); 
+            btn.transform.GetChild(1).gameObject.SetActive(true); 
+            int levelIndex = i;
+            btn.onClick.AddListener(() => LoadLevel(levelIndex));
         }
+        i++;
     }
-
-   
 }
+
+private void LoadLevel(int levelIndex)
+{
+    SceneManager.LoadScene("Level" + (levelIndex + 1));
+}
+} 
+
+    
