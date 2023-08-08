@@ -2642,12 +2642,13 @@ MonoBehaviour:
     m_GlyphPairAdjustmentRecords: []
   fallbackFontAssets: []
   m_FallbackFontAssetTable:
-  - {fileID: 11400000, guid: c27bd00366b4bb4469b1d553f1d1c128, type: 2}
-  - {fileID: 11400000, guid: ac7e45d58eb439840b614322c8a2a358, type: 2}
-  - {fileID: 11400000, guid: e4b004caca791eb45b029b763951bad5, type: 2}
-  - {fileID: 11400000, guid: 2023828b55edfc14bb439c4511dc9669, type: 2}
-  - {fileID: 11400000, guid: fe27500122099ee45965ad33d5988780, type: 2}
-  - {fileID: 11400000, guid: c5ca991661e59af428d38439e0ce6083, type: 2}
+  - {fileID: 11400000, guid: b2821d6836979504b8f0df53b0b7b033, type: 2}
+  - {fileID: 11400000, guid: a8f8072511da6d846abcb3f079a55cd7, type: 2}
+  - {fileID: 11400000, guid: 70501be6548ae754caa3a4f9b48ee77c, type: 2}
+  - {fileID: 11400000, guid: 80272df049576284e8b8566b00664285, type: 2}
+  - {fileID: 11400000, guid: b8899f90fe8d4924796e4a20ec37fde3, type: 2}
+  - {fileID: 11400000, guid: 775b30b52b12e88469d89323a3cad968, type: 2}
+  - {fileID: 11400000, guid: 27c1f65e90bd7c743977557fb88400bb, type: 2}
   m_CreationSettings:
     sourceFontFileName: 
     sourceFontFileGUID: 0613ae8065d8848449c01ad8e3f1204c

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4219a8a477685d3458fe278d112e8529
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Texas Rider
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 55f5a87b5e6ab7a4fa05cf592ab271fa, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

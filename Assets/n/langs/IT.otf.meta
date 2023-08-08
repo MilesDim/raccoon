@@ -10,8 +10,7 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Cafe Francoise
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 6953639c2abd7bb48a34ed85bae01740, type: 3}
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

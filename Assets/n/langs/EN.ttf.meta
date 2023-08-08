@@ -10,8 +10,7 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - JakobExtraCTT
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 0613ae8065d8848449c01ad8e3f1204c, type: 3}
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

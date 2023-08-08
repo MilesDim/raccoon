@@ -31,24 +31,24 @@ MonoBehaviour:
     m_Localized: Muzyka
     m_Metadata:
       m_Items: []
-  - m_Id: 21580463484928
-    m_Localized: "Gra\u0107"
+  - m_Id: 3784994285432832
+    m_Localized: "Wyj\u015Bcie"
     m_Metadata:
       m_Items: []
-  - m_Id: 22927086727168
+  - m_Id: 3783973450559488
     m_Localized: Mapa
     m_Metadata:
       m_Items: []
-  - m_Id: 24189618368512
-    m_Localized: "Sk\xF3rki"
+  - m_Id: 3784521323130880
+    m_Localized: Skiny
     m_Metadata:
       m_Items: []
   - m_Id: 25741221441536
-    m_Localized: "Szop Kapu\u015Bciany"
+    m_Localized: " Kapu\u015Bny Szop"
     m_Metadata:
       m_Items: []
-  - m_Id: 2379156849176576
-    m_Localized: "Wyj\u015Bcie"
+  - m_Id: 3783458796875776
+    m_Localized: Graj
     m_Metadata:
       m_Items: []
   references:

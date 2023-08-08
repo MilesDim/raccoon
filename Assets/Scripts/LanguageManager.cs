@@ -9,48 +9,54 @@ public class LanguageManager : MonoBehaviour
 {
     
     public static LanguageManager instance;
-     public Dictionary<string, TMP_FontAsset> languageFonts; 
+    public Dictionary<string, TMP_FontAsset> languageFonts; 
 
     private int currentLanguageIndex = 0;
-   
-  
-     public TMP_FontAsset font_en;
+    public TMP_FontAsset font_en;
     
-     List<TMP_Text> textObjects;
+    List<TMP_Text> textObjects;
+    private int score = 0;
 
     private void Awake()
     {
         languageFonts = new Dictionary<string, TMP_FontAsset>();
-      
         languageFonts.Add("en", font_en);
-    
-        ChangeLanguage(true);
+
+        // Загрузите выбранный язык и установите его
+        string selectedLanguage = LoadSelectedLanguage();
+        ChangeLanguage(true); // Установите выбранный язык вперед
     }
 
     public void addTextObject(TMP_Text textObject){
         textObjects.Add(textObject);
     }
 
-    public void ChangeLanguage(bool forward)
+   public void ChangeLanguage(bool forward)
+   {
+    int languageCount = LocalizationSettings.AvailableLocales.Locales.Count;
+    
+    if (forward)
     {
-        int languageCount = LocalizationSettings.AvailableLocales.Locales.Count;
-            
-        if (forward)
-        {
-            currentLanguageIndex = (currentLanguageIndex + 1) % languageCount;
-        }
-        else
-        {
-            currentLanguageIndex = (currentLanguageIndex - 1 + languageCount) % languageCount;
-        }
+        currentLanguageIndex = (currentLanguageIndex + 1) % languageCount;
+    }
+    else
+    {
+        currentLanguageIndex = (currentLanguageIndex - 1 + languageCount) % languageCount;
+    }
 
-        // Получаем текущий выбранный язык и его код
-        var selectedLanguage = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
-        var selectedLanguageCode = selectedLanguage.Identifier.Code;
-        LocalizationSettings.SelectedLocale = selectedLanguage;
+    // Получите текущий выбранный язык и его код
+    var selectedLanguage = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
+    var selectedLanguageCode = selectedLanguage.Identifier.Code;
 
-        // Применяем шрифт для текущего языка
-        ApplyFontForCurrentLanguage(selectedLanguageCode);
+    // Сохраните выбранный язык
+    SaveSelectedLanguage(selectedLanguageCode);
+
+    // Примените шрифт для текущего языка
+    ApplyFontForCurrentLanguage(selectedLanguageCode);
+    }
+    private void SaveSelectedLanguage(string languageCode)
+    {
+    PlayerPrefs.SetString("SelectedLanguage", languageCode);
     }
 
     private void ApplyFontForCurrentLanguage(string languageCode)
@@ -66,23 +72,6 @@ public class LanguageManager : MonoBehaviour
         }
     }
 
-    // GameObject GetItemGameObject(Item item)
-    // {
-    //     Item[] items = Resources.FindObjectsOfTypeAll(typeof(Item)) as Item[];
-    
-    //     GameObject itemObj = null;
-    
-    //     foreach (var i in items)
-    //     {
-    //         if (i.universalID == item.universalID)
-    //         {
-    //             itemObj = i.gameObject;
-    //             break;
-    //         }
-    //     }
-    
-    //     return itemObj;
-    // }
 
   private void ApplyFontForCurrentLanguage2(string languageCode)
     {
@@ -103,35 +92,24 @@ public class LanguageManager : MonoBehaviour
                 textMeshProElement.font = font; // Используем свойство font для установки шрифта
             }
 
-            // Обновляем шрифт для всех объектов UnityEngine.UI.Text (если они используют TMPro.TMP_FontAsset)
-            // Text[] uiTextElements = FindObjectsOfType<Text>();
-            // foreach (Text uiTextElement in uiTextElements)
-            // {
-            //     // Если текстовый элемент не использует TMPro, применяем шрифт только если он UnityEngine.Font
-            //     if (uiTextElement.GetComponent<TextMeshProUGUI>() == null)
-            //     {
-            //         if (uiTextElement.font != null && uiTextElement.font.GetType() == typeof(Font))
-            //         {
-            //             // Создаем новый компонент TMPro.TMP_FontAsset из существующего шрифта UnityEngine.Font
-            //             TMP_FontAsset newFont = TMP_FontAsset.CreateFontAsset(uiTextElement.font);
-            //             if (newFont != null)
-            //             {
-            //                 // Устанавливаем шрифт для текстового элемента
-            //                 uiTextElement.font = newFont;
-            //             }
-            //         }
-            //     }
-            //     // // Проверяем, использует ли UI Text TMP_FontAsset
-            //     // // if (uiTextElement.font is TMPro.TMP_FontAsset tmpFont)
-            //     // if (uiTextElement.font is TMPro.TMP_FontAsset tmpFont)
-            //     // {
-            //     //     if (tmpFont != font)
-            //     //     {
-            //     //         uiTextElement.font = null; // Сбрасываем сначала шрифт на null, чтобы TMP не пытался использовать обычный шрифт
-            //     //     }
-            //     // }
-            // }
         }
     }
+    public void ChangeScore(bool forward)
+    {
+        if (forward)
+        {
+            score++;
+        }
+        else
+        {
+            score--;
+        }
+
+    }
+    private string LoadSelectedLanguage()
+    {
+    return PlayerPrefs.GetString("SelectedLanguage", "en"); // "en" - язык по умолчанию
+    }
+
 
 }
