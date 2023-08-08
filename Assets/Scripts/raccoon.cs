@@ -11,6 +11,9 @@ public class raccoon : MonoBehaviour
    [SerializeField] Rigidbody rb;
    Collider cl;
    Animator anim;
+   private bool isMovingEnabled = true;
+   private Directions currentDirection = Directions.Left;
+   private bool isMoving = false;
    
    // [SerializeField] private GameObject _startingSceneTransition; 
    [SerializeField] private GameObject _endingSceneTransition;
@@ -74,27 +77,82 @@ public class raccoon : MonoBehaviour
      /// _startingSceneTransition.SetActive(true);  
    }
 
-   void FixedUpdate(){
+   void FixedUpdate()
+   {
       recalcMoves();
    }
 
- 
-   public void setWin (bool win) {
+   void Update()
+   {
+    if (isMovingEnabled)
+    {
+        HandleInput();
+        if (isMoving)
+        {
+            HandleMovement();
+        }
+    }
+   }
+   void HandleInput()
+   {
+      if (Input.GetKeyDown(KeyCode.W))
+      {
+        StartMoving(Directions.Up);
+      }
+      else if (Input.GetKeyDown(KeyCode.A))
+      {
+        StartMoving(Directions.Left);
+      }
+      else if (Input.GetKeyDown(KeyCode.S))
+      {
+        StartMoving(Directions.Down);
+      }
+      else if (Input.GetKeyDown(KeyCode.D))
+      {
+        StartMoving(Directions.Right);
+      }
+      else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+      {
+        StopMoving();
+    }
+}
+
+   void StartMoving(Directions direction)
+   {
+      if (!isMoving)
+      {
+        isMoving = true;
+        currentDirection = direction;
+      }
+   }
+
+   void StopMoving()
+   {
+    isMoving = false;
+   }
+
+   public void setWin (bool win)
+   {
       isWin = win;
    }
 
-   private void winAnim(){
-      if(isWin){
-         _endingSceneTransition.SetActive(true); 
-         anim.SetTrigger("call-boune"); 
-         nextScene();
-      }
+   private void winAnim()
+   {
+      
+    if (isWin)
+    {
+        isMovingEnabled = false;
+        _endingSceneTransition.SetActive(true);
+        anim.SetTrigger("call-boune");
+        nextScene();
+    }
    } 
 
-   void nextScene(){
-      // SceneManager.LoadScene("Level2");
-      SceneManager.LoadScene(sceneIndex + 1);
-   }
+  void nextScene()
+{
+    isMovingEnabled = true;
+    SceneManager.LoadScene(sceneIndex + 1);
+}
 
    private void rotatePlayer(Directions dir, int angle){ 
       Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, angle, 0)); 
@@ -104,6 +162,7 @@ public class raccoon : MonoBehaviour
 
    public void MoveRight()
    {  
+      StopMoving();
       if(winMove[Directions.Right]){
          winAnim();
       }else if(canMove[Directions.Right]){ 
@@ -111,10 +170,13 @@ public class raccoon : MonoBehaviour
          rb.MovePosition(vects[Directions.Right]);
          rotatePlayer(Directions.Right, -90);
       }
+
+      
    }
 
    public void MoveLeft()
    {
+      StopMoving();
       if(winMove[Directions.Left]){
          winAnim();
       }else if(canMove[Directions.Left]){  
@@ -126,6 +188,7 @@ public class raccoon : MonoBehaviour
 
    public void MoveUp()
    {
+      StopMoving();
       if(winMove[Directions.Up]){
          winAnim();
       }else if(canMove[Directions.Up]){ 
@@ -137,10 +200,10 @@ public class raccoon : MonoBehaviour
 
    public void MoveDown()
    {
+      StopMoving();
       if(winMove[Directions.Down]){
          winAnim();
-      }else if(canMove[Directions.Down]){ 
-stepsound.Play();
+      }else if(canMove[Directions.Down]){stepsound.Play();
          rb.MovePosition(vects[Directions.Down]); 
          rotatePlayer(Directions.Down, 360); 
       }
@@ -170,38 +233,6 @@ stepsound.Play();
       Vector3 midPoint = new Vector3(currentTerrainBounds.center.x, 0, currentTerrainBounds.center.z);
       pickWallColliders = Physics.OverlapSphereNonAlloc(midPoint + getVector(dirKey) * currentTerrainBounds.size.x / 2, 0.5f, pickedWalls, wallsLayer);
 
-      // Debug.Log(dirKey+" pickWallColliders = "+pickWallColliders);
-     
-
-      // for (int i = 0; i < pickWallColliders; i++) { 
-      //    Debug.Log("pickedWalls[i].gameObject.tag = " + pickedWalls[i].gameObject.tag);
-      // }
-       
-
-      // Debug.Log("pickedWalls = " + pickedWalls);
-
-      // bool haveWall = false;
-      // if(pickWallColliders > 0){
-      //    for (int i = 0; i < pickWallColliders; i++) { 
-      //       if(pickedWalls[i].gameObject.tag == "fence"){
-      //          haveWall = true;
-      //       }
-      //       // Debug.Log(dirKey + " - "+ i + ". pickedWall = " + pickedWalls[i].gameObject.name);
-      //    }
-      // }
-
-      // pickedWallsFiltered = pickedWalls.Where(c => c.gameObject.tag == "Player").ToArray();
-      // pickWallCollidersFiltered = pickWallColliders > 0 
-      //    ? pickedWallsFiltered.Length
-      //    : 0;
- 
-      // return pickWallCollidersFiltered == 0 
-      // return haveWall ? pickPlatformColliders > 0 : false;
-      // return !haveWall ? pickPlatformColliders > 0 : false;
-      // return pickWallColliders == 0 
-      //    ? pickPlatformColliders > 0
-      //    : false; 
-
       return pickWallColliders == 0 ? pickPlatformColliders > 0 : false;
    }
 
@@ -226,40 +257,6 @@ stepsound.Play();
       Gizmos.color = Color.white; 
       Gizmos.DrawWireSphere(center - getVector(Directions.Down) * bounds.size.x / 2, rad);
 
-      
-      // Gizmos.DrawWireSphere(center + new Vector3(bounds.size.x / 2, 0, 0), rad);
-
-      // Vector3 center = new Vector3(bounds.center.x, 0, bounds.center.z);
-      // Gizmos.color = Color.red;
-      // Gizmos.DrawWireSphere(rb.position + getVector(Directions.Left) * 2 + Vector3.up , rad);
-      // Gizmos.color = Color.green;
-      // Gizmos.DrawWireSphere(rb.position + getVector(Directions.Right) * 2 + Vector3.up , rad);
-      // Gizmos.color = Color.blue;
-      // Gizmos.DrawWireSphere(rb.position + getVector(Directions.Up) * 1.5f + Vector3.up , rad);
-      // Gizmos.color = Color.white;
-      // Gizmos.DrawWireSphere(rb.position + getVector(Directions.Down) * 1.5f + Vector3.up , rad);
-
-
-
-
-      // Gizmos.color = Color.red;
-      // Gizmos.DrawWireSphere(vects[Directions.Left] - getVector(Directions.Left) * 2 + Vector3.up , rad);
-      // Gizmos.color = Color.green;
-      // Gizmos.DrawWireSphere(vects[Directions.Right] - getVector(Directions.Right) * 2 + Vector3.up , rad);
-      // Gizmos.color = Color.blue;
-      // Gizmos.DrawWireSphere(vects[Directions.Up] - getVector(Directions.Up) * 1.5f + Vector3.up , rad);
-      // Gizmos.color = Color.white;
-      // Gizmos.DrawWireSphere(vects[Directions.Down] - getVector(Directions.Down) * 1.5f + Vector3.up , rad);
-
-      // platforms
-      // Gizmos.color = Color.red;
-      // Gizmos.DrawWireSphere(vects[Directions.Left] + Vector3.down * 2, 0.1f);
-      // Gizmos.color = Color.green;
-      // Gizmos.DrawWireSphere(vects[Directions.Right] + Vector3.down * 2, 0.1f);
-      // Gizmos.color = Color.blue;
-      // Gizmos.DrawWireSphere(vects[Directions.Up] + Vector3.down * 2, 0.1f);
-      // Gizmos.color = Color.white;
-      // Gizmos.DrawWireSphere(vects[Directions.Down] + Vector3.down * 2, 0.1f);
    }
  
 
@@ -298,6 +295,32 @@ stepsound.Play();
             return Vector3.left;
          case Directions.Right:
             return Vector3.right;
+      }
+   }
+   void HandleMovement()
+   {
+    if (winMove[currentDirection])
+      {
+        winAnim();
+      }
+    else if (canMove[currentDirection])
+      {
+        if (currentDirection == Directions.Left)
+         {
+            MoveLeft();
+         }
+        else if (currentDirection == Directions.Right)
+         {
+            MoveRight();
+         }
+        else if (currentDirection == Directions.Up)
+         {
+            MoveUp();
+         }
+        else if (currentDirection == Directions.Down)
+         {
+            MoveDown();
+         }
       }
    }
    
