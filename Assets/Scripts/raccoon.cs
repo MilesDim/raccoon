@@ -133,12 +133,14 @@ public class raccoon : MonoBehaviour
 
    public void setWin (bool win)
    {
+      Debug.Log("!!setWin"+win);
       isWin = win;
    }
 
    private void winAnim()
    {
-      
+      Debug.Log("!!winAnim"+isWin);
+      // Debug.Log(isWin);
     if (isWin)
     {
         isMovingEnabled = false;

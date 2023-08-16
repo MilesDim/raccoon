@@ -27,6 +27,7 @@ public class CabbageText : MonoBehaviour
       
 
         player.setWin(summaryCabbageCount == 0);
+      Debug.Log("!!summaryCabbageCount"+summaryCabbageCount);
 
         if(summaryCabbageCount == 0){
             // send message to effect
