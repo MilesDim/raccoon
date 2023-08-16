@@ -14901,6 +14901,7 @@ GameObject:
   - component: {fileID: 1551691517}
   - component: {fileID: 1551691516}
   - component: {fileID: 5866666019862234420}
+  - component: {fileID: 5866666019862234421}
   m_Layer: 0
   m_Name: raccoon
   m_TagString: Player
@@ -16709,6 +16710,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5866666019862234421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147987760627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c77754b743c654c90a43d4764612fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RacconModels:
+  - {fileID: 284631139121716778, guid: 77e117669e58f5e4f8c5daf15be7ce0d, type: 3}
+  - {fileID: 6102874484502173220, guid: 14d48ec3c8616f247801d5ee1dc04761, type: 3}
+  - {fileID: 2012875351624078149, guid: 79eab101b362a1e41bf0957e655d0e3f, type: 3}
+  - {fileID: 4926864551346573069, guid: 16ffee27e8dceff429ea9d5b4bd97212, type: 3}
 --- !u!4 &5886973799503119887
 Transform:
   m_ObjectHideFlags: 0
