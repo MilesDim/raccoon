@@ -32,7 +32,7 @@ public class LanguageManager : MonoBehaviour
 
         // Загрузите выбранный язык и установите его
         string selectedLanguage = LoadSelectedLanguage();
-        ChangeLanguage(true); // Установите выбранный язык вперед
+        // ChangeLanguage(true); // Установите выбранный язык вперед
 
         // Примените шрифт для текущего языка после загрузки
         // ApplyFontForCurrentLanguage(selectedLanguage);
@@ -50,41 +50,10 @@ public class LanguageManager : MonoBehaviour
         {
             currentLanguageIndex = (currentLanguageIndex - 1 + languageCount) % languageCount;
         }
-
-        // Получите текущий выбранный язык и его код
-        // var selectedLanguage = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
-        // var selectedLanguageCode = selectedLanguage.Identifier.Code;
  
-        // Debug.Log("!! selectedLanguageCode "+selectedLanguageCode);
-        // // Сохраните выбранный язык
-        // SaveSelectedLanguage(selectedLanguageCode);
-
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
-
-        // Примените шрифт для текущего языка
-        // ApplyFontForCurrentLanguage(selectedLanguageCode); // deprecated т.к. используем один шрифт
     }
 
-    private void SaveSelectedLanguage(string languageCode)
-    {
-        PlayerPrefs.SetString(LanguageSelectionKey, languageCode);
-    }
-
- 
-    private void ApplyFontForCurrentLanguage(string languageCode)
-    {
-        Debug.Log("!! languageFonts  = " + languageFonts);
-        // Применяем шрифт для текущего языка, если он доступен
-        if (languageFonts.TryGetValue(languageCode, out TMP_FontAsset font))
-        {
-            TMP_Text[] textElements = FindObjectsOfType<TMP_Text>();
-            Debug.Log("!! languageFonts ok textElements = " + textElements);
-            foreach (TMP_Text textElement in textElements)
-            {
-                textElement.font = font;
-            }
-        }
-    }
 
     public void ChangeScore(bool forward)
     {
