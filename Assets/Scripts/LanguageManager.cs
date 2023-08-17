@@ -16,6 +16,15 @@ public class LanguageManager : MonoBehaviour
     private int score = 0;
     private const string LanguageSelectionKey = "LanguageSelection";
 
+    public Button forwardButton; 
+    public Button backButton;    
+
+    private void Start()
+    {
+        forwardButton.onClick.AddListener(OnForwardButtonClick);
+        backButton.onClick.AddListener(OnBackButtonClick);
+    }
+
      private void Awake()
     {
         languageFonts = new Dictionary<string, TMP_FontAsset>();
@@ -26,7 +35,7 @@ public class LanguageManager : MonoBehaviour
         ChangeLanguage(true); // Установите выбранный язык вперед
 
         // Примените шрифт для текущего языка после загрузки
-        ApplyFontForCurrentLanguage(selectedLanguage);
+        // ApplyFontForCurrentLanguage(selectedLanguage);
     }
 
     public void ChangeLanguage(bool forward)
@@ -43,14 +52,17 @@ public class LanguageManager : MonoBehaviour
         }
 
         // Получите текущий выбранный язык и его код
-        var selectedLanguage = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
-        var selectedLanguageCode = selectedLanguage.Identifier.Code;
+        // var selectedLanguage = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
+        // var selectedLanguageCode = selectedLanguage.Identifier.Code;
+ 
+        // Debug.Log("!! selectedLanguageCode "+selectedLanguageCode);
+        // // Сохраните выбранный язык
+        // SaveSelectedLanguage(selectedLanguageCode);
 
-        // Сохраните выбранный язык
-        SaveSelectedLanguage(selectedLanguageCode);
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[currentLanguageIndex];
 
         // Примените шрифт для текущего языка
-        ApplyFontForCurrentLanguage(selectedLanguageCode);
+        // ApplyFontForCurrentLanguage(selectedLanguageCode); // deprecated т.к. используем один шрифт
     }
 
     private void SaveSelectedLanguage(string languageCode)
@@ -58,12 +70,15 @@ public class LanguageManager : MonoBehaviour
         PlayerPrefs.SetString(LanguageSelectionKey, languageCode);
     }
 
+ 
     private void ApplyFontForCurrentLanguage(string languageCode)
     {
+        Debug.Log("!! languageFonts  = " + languageFonts);
         // Применяем шрифт для текущего языка, если он доступен
         if (languageFonts.TryGetValue(languageCode, out TMP_FontAsset font))
         {
             TMP_Text[] textElements = FindObjectsOfType<TMP_Text>();
+            Debug.Log("!! languageFonts ok textElements = " + textElements);
             foreach (TMP_Text textElement in textElements)
             {
                 textElement.font = font;
@@ -86,6 +101,18 @@ public class LanguageManager : MonoBehaviour
     private string LoadSelectedLanguage()
     {
         string loadedLanguage = PlayerPrefs.GetString(LanguageSelectionKey, "en");
+        Debug.Log("!! loadedLanguage = "+loadedLanguage);
         return loadedLanguage;
+    }
+     public void OnForwardButtonClick()
+    {
+        ChangeLanguage(true); // Переключаемся на следующий язык
+        Debug.Log("OnForwardButtonClick");
+    }
+
+    public void OnBackButtonClick()
+    {
+        ChangeLanguage(false); // Переключаемся на предыдущий язык
+        Debug.Log("OnBackButtonClick");
     }
 }

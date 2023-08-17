@@ -12329,6 +12329,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CircleStart
       objectReference: {fileID: 0}
+    - target: {fileID: 1915861326920603544, guid: 5609d4a929be576469b154352a9d3be0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3906848181430211006, guid: 5609d4a929be576469b154352a9d3be0,
         type: 3}
       propertyPath: m_Pivot.x
