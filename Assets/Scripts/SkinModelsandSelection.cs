@@ -6,7 +6,8 @@ public class SkinModelsandSelection : MonoBehaviour
 {
     [SerializeField] private GameObject[] RacconModels;
 
-    private GameObject currentModel; // Текущий объект модели
+    private GameObject currentModel;
+    // Текущий объект модели
 
     private void Awake()
     {
@@ -17,9 +18,15 @@ public class SkinModelsandSelection : MonoBehaviour
     {
         if (currentModel != null)
         {
-            Destroy(currentModel); // Уничтожаем предыдущий объект модели
+            Destroy(currentModel); 
+            // Уничтожаем предыдущий объект модели
         }
 
-        currentModel = Instantiate(RacconModels[index], transform.position, transform.rotation, transform);
+        currentModel = Instantiate(
+            RacconModels[index],
+            transform.position,
+            transform.rotation,
+            transform
+        );
     }
 }

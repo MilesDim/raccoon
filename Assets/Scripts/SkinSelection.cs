@@ -25,16 +25,14 @@ public class SkinSelection : MonoBehaviour
         } 
     }
     public void ChangeRaccon(int _change)
-    {
-        currentRaccon += _change;
-        if (currentRaccon > transform.childCount - 1)
-        currentRaccon = 0;
-        else if (currentRaccon < 0)
-        currentRaccon = transform.childCount - 1;
+    { 
+        currentRaccon += _change; 
 
-        // SaveSkin.instance.currentRaccon = currentRaccon;
-        // SaveSkin.instance.Save();
-         currentRaccon += _change;
+        if (currentRaccon > transform.childCount - 1){
+            currentRaccon = 0;
+        }else if (currentRaccon < 0){
+            currentRaccon = transform.childCount - 1;
+        } 
         SelectionRaccon(currentRaccon);
     }
     private void SelectCurrentRaccon()
