@@ -11,7 +11,9 @@ public class SkinModelsandSelection : MonoBehaviour
 
     private void Awake()
     {
-        ChooseRacconModel(SaveSkin.instance.currentRaccon);
+        if (!gameObject.name.Contains("(Clone)")){
+            ChooseRacconModel(SaveSkin.instance.currentRaccon);
+        }
     }
 
     private void ChooseRacconModel(int index)

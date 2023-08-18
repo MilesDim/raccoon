@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Spikes : MonoBehaviour
 {
-    public Transform Player; // Ссылка на блок, на котором должны активироваться шипы
+    private Transform Player; // Ссылка на блок, на котором должны активироваться шипы
     public Collider spikesCollider; // Ссылка на Collider шипов
     private bool isPlayerOnBlock = false;
     private bool isPlayerOnBlockPrev = false;
@@ -13,7 +13,9 @@ public class Spikes : MonoBehaviour
     private bool isActive = false;
     [SerializeField] private GameObject _endingSceneTransition;
  
-    void Start(){
+
+    void Awake(){
+        Player = GameObject.FindWithTag("Player").transform;
     }
 
     private void FixedUpdate()
